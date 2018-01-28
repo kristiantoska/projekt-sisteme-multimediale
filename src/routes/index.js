@@ -5,7 +5,7 @@ import Review from "./Review/Review";
 
 class App extends Component {
   render() {
-    return <MainPage />;
+    return <Review />;
   }
 }
 

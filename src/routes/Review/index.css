@@ -1,3 +1,4 @@
+
 html {
   box-sizing: border-box;
 }
@@ -15,71 +16,76 @@ body {
   font-weight: bold;
   /* position: relative; */
   /* top: 200px;  */
-  margin-left: 100px;
+  margin-left: 150px;
+  margin-top: 75px;
 }
+
 .card {
-  border-width: 0.01em;
-  border: solid rgba(0, 0, 0, 0.2);
-  width: 600px;
+  width: 800px;
   height: 500px;
+  margin-left: 150px;
+  margin-top: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.poster {
+  width: 35%;
+  height: 75%;
+  margin: 8% 3%;
+}
+.cardContent {
+  margin-top: -450px;
+  margin-left: 45%;
 
-  white-space: nowrap;
-  display: inline-flex;
-  margin-left: 100px;
+}
+.reviewBox {
+  width: 95%;
+  background-color: white;
+  border-radius: 0px;
+  border: none;
+  margin-right: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0px 0px 0 rgba(0, 0, 0, 0.09);
 }
 
-fieldset,
-label {
-  margin: 0;
-  padding: 0;
-}
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
 
 .rating {
   border: none;
   float: left;
 }
 
-.rating > input {
-  display: none;
-}
+.rating > input { display: none; }
 .rating > label:before {
-  margin: 5px;
-  font-size: 1.25em;
+  font-size: 2em;
   font-family: FontAwesome;
   display: inline-block;
-  content: "\f005";
+  content: "★";
 }
 
 .rating > .half:before {
-  content: "\f089";
+  content: "★";
   position: absolute;
 }
 
 .rating > label {
   color: #ddd;
-  float: right;
+ float: right;
 }
+
+/***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
-  .rating:not(:checked) > label:hover, /* hover current star */
-  .rating:not(:checked) > label:hover ~ label {
-  color: #ffd700;
-} /* hover previous stars in list */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
-  .rating > input:checked ~ label:hover,
-  .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-  .rating > input:checked ~ label:hover ~ label {
-  color: #ffed85;
-}
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
-.img23 {
-  width: 40%;
-  height: 80%;
-  justify-content: center;
-  align-items: center;
-  margin: 8% 3%;
-}
 textarea {
   width: 280px;
   height: 250px;
@@ -89,24 +95,37 @@ textarea {
   background-color: #f8f8f8;
   resize: none;
 }
-.img {
+.submitContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   position: relative;
-  left: 220px;
-  top: 10px;
+  left: 340px;
+  top: -30px;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  font-size-adjust: auto;
+  background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 73%);
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding-right: 6px; /* Some padding */
+  border-radius: 100px; /* Rounded corners */
+  font-size: 32px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-left: 12px;
 }
 
 .card1 {
-  border-width: 0.01em;
-  border: solid rgba(0, 0, 0, 0.2);
   width: 400px;
   height: 500px;
-
   float: right;
   position: relative;
-  /* left: 600px; */
   white-space: nowrap;
   display: inline-flex;
   margin-right: 100px;
+  margin-top: -31.5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .first {
   margin-top: 30px;
@@ -179,9 +198,25 @@ footer img {
 
   /* margin-right: 10px; */
 }
-.card,
-.card1 {
-  position: relative;
-  top: 50px;
-  background-color: white;
+.arrow {
+  height: 60px;
+  width: 60px;
+  opacity: 0.7;
+  /*display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  font-size: 20px;
+  font-size-adjust: auto;
+  background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2af5d9 100%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 100px; /* Rounded corners */
 }
