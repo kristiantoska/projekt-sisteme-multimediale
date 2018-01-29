@@ -7,29 +7,6 @@ html {
   box-sizing: inherit;
 }
 
-.menus {
-  margin: auto;
-  margin-left: 12px;
-  margin-top: 50px;
-  float: left;
-  list-style: none;
-}
-
-.menuItem {
-  text-decoration: none;
-  color: black;
-}
-a:hover {
-  text-decoration: underline;
-  /* font-weight: bold; */
-}
-
-.menus .list-items {
-  display: inline-block;
-  font-size: 20px;
-  margin-right: 50px;
-}
-
 .thor {
   background-position: center;
   background-repeat: no-repeat;
@@ -41,23 +18,7 @@ a:hover {
 body {
   margin: 0;
 }
-.block-on-right {
-  float: right;
-  width: 300px;
-  height: 150px;
-  font-size: 12px;
-  background-color: rgb(44, 37, 37);
-  text-align: center;
-  color: white;
-  margin-top: 270px;
-  margin-right: 10px;
-}
-#rt {
-  margin-left: 15px;
-}
-.rt-imdb {
-  margin-left: 50px;
-}
+
 .header {
   width: 100%;
   height: 70px;
@@ -75,15 +36,6 @@ body {
   float: left;
 }
 
-.description {
-  margin-left: 60px;
-  margin-top: 0;
-  width: 500px;
-  height: 120px;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: left;
-}
 .inp {
   height: 40px;
   background-color: rgba(0, 0, 0, 0.04);
@@ -92,13 +44,6 @@ body {
 ::placeholder {
   color: #bdbdbd;
   font-weight: 300;
-}
-
-.title {
-  margin-left: 10px;
-  font-size: 80px;
-  font-weight: 400;
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 footer {
@@ -136,7 +81,7 @@ footer {
 }
 .films {
   background-color: white;
-  margin: 100px 10px;
+  margin: 10px 10px;
 }
 
 #arrbot {
@@ -175,6 +120,7 @@ footer a img {
   font-size: 42px !important;
   font-weight: bold !important;
   border-radius: 50px !important;
+
 }
 .button {
   /* Green */
@@ -186,6 +132,7 @@ footer a img {
   text-decoration: none;
   display: inline-block;
   font-size: 25px;
+  font-family: Helvetica;
   font-weight: 400;
   cursor: pointer;
   border-radius: 30px;
@@ -194,6 +141,7 @@ footer a img {
 .tag {
   padding-left: 8px;
   font-weight: bold;
+  font-family: Helvetica;
 }
 
 .summary {
@@ -221,6 +169,7 @@ footer a img {
 .text_shape {
   font-size: 20px;
   font-weight: 400;
+  font-family: Helvetica;
   color: #ffffff;
   text-align: center;
   padding-top: 5px;

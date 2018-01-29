@@ -146,9 +146,8 @@ class MainPage extends Component {
             alt="navImage"
           />
 
-          <form action="" id="search" style={{ width: 400 }}>
+          <form action="" id="search">
             <input
-              className="inp"
               type="text"
               size="50"
               name="search"
