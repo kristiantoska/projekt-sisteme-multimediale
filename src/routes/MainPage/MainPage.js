@@ -58,7 +58,7 @@ class MainPage extends Component {
     this.cancelToken.cancel();
     this.cancelToken = CancelToken.source();
 
-    if (text.length > 2) {
+    if (text.length > 1) {
       axios({
         method: "get",
         url: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${text}&page=1&include_adult=false`,
@@ -144,6 +144,20 @@ class MainPage extends Component {
     );
   }
 
+  renderSearchResults() {
+    const data = this.state.searchResults;
+
+    return data.map(item => (
+      <Link
+        key={item.id}
+        to="/about"
+        onClick={() => this.props.selectMovie(item)}
+      >
+        <img src={`http://image.tmdb.org/t/p/w342${item.poster_path}`} alt="" />
+      </Link>
+    ));
+  }
+
   render() {
     const selected = this.state.selected;
     const currentCategory =
@@ -176,7 +190,11 @@ class MainPage extends Component {
           </form>
         </div>
 
-        {this.state.text !== "" && <div id="searchContainer" />}
+        {this.state.text.length > 1 && (
+          <div id="searchContainer" className="films">
+            {this.renderSearchResults()}
+          </div>
+        )}
 
         {this.renderBannerMovie()}
 

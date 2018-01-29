@@ -256,8 +256,11 @@ footer a img {
   align-self: center;
 }
 #searchContainer {
-  background-color: red;
-  height: 300px;
+  background-color: #00000088;
   width: 100%;
+  height: 100%;
   position: absolute;
+  padding-top: 20;
+  padding-bottom: 20;
+  margin-top: 0px;
 }

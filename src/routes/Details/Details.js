@@ -152,6 +152,12 @@ class MainPage extends Component {
     ));
   }
 
+  renderTags(data) {
+    return data.map(tag => (
+      <button className="button buttonDefault">{tag}</button>
+    ));
+  }
+
   render() {
     const item = this.props.selectedMovie;
     return (
@@ -174,16 +180,10 @@ class MainPage extends Component {
               {item.original_title}
             </button>
             <div style={{ display: "block", marginLeft: 120 }}>
-              <button className="button buttonDefault">Comic</button>
-              <button className="button buttonDefault">Action</button>
+              {this.renderTags(this.state.genres.slice(0, 2))}
             </div>
             <div style={{ display: "block", marginLeft: 70 }}>
-              <button className="button buttonDefault">Comedy</button>
-              <button className="button buttonDefault">SuperHero</button>
-            </div>
-            <div style={{ display: "block", marginLeft: 120 }}>
-              <button className="button button1">7.5 Imdb</button>
-              <button className="button button2">65% RT</button>
+              {this.renderTags(this.state.genres.slice(2, 4))}
             </div>
           </div>
         </div>
