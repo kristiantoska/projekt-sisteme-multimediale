@@ -162,32 +162,10 @@ class MainPage extends Component {
           </button>
         </Link>
 
-        <div className="header">
-          <img
-            className="btn-nav"
-            src={require("../../images/burger.png")}
-            alt="navImage"
-          />
-
-          <form action="" id="search" style={{ width: 400 }}>
-            <input
-              className="inp"
-              type="text"
-              size="50"
-              name="search"
-              placeholder="Search"
-            />
-          </form>
-        </div>
-
         <div className="thor">
           <img
             id="backgroundimage"
-<<<<<<< HEAD
             src={`http://image.tmdb.org/t/p/w780${item.backdrop_path}`}
-=======
-            src={`http://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
->>>>>>> 36c46a625ae03ffd11c8f52e5f6eb6abb4b3e156
             border="0"
             alt=""
           />

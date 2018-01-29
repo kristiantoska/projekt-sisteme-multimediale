@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import "./index.css";
 
+const CancelToken = axios.CancelToken;
 const API_KEY = "5b2f814559ec90adfd0e8c740aa0c2b8";
 
 class MainPage extends Component {
@@ -17,8 +18,11 @@ class MainPage extends Component {
       popular: [],
       latest: [],
       selected: 2,
-      loading: true
+      loading: true,
+      text: "",
+      searchResults: []
     };
+    this.cancelToken = CancelToken.source();
   }
 
   componentDidMount() {
@@ -50,6 +54,25 @@ class MainPage extends Component {
     this.setState({ selected: type });
   }
 
+  search(text) {
+    this.cancelToken.cancel();
+    this.cancelToken = CancelToken.source();
+
+    if (text.length > 2) {
+      axios({
+        method: "get",
+        url: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${text}&page=1&include_adult=false`,
+        cancelToken: this.cancelToken.token
+      }).then(result => {
+        if (result.data) {
+          this.setState({ searchResults: result.data.results.slice(0, 4) });
+        }
+      });
+    }
+
+    this.setState({ text });
+  }
+
   renderMovies() {
     let data = [];
 
@@ -72,11 +95,7 @@ class MainPage extends Component {
         to="/about"
         onClick={() => this.props.selectMovie(item)}
       >
-<<<<<<< HEAD
         <img src={`http://image.tmdb.org/t/p/w342${item.poster_path}`} alt="" />
-=======
-        <img src={`http://image.tmdb.org/t/p/w780${item.poster_path}`} alt="" />
->>>>>>> 36c46a625ae03ffd11c8f52e5f6eb6abb4b3e156
       </Link>
     ));
   }
@@ -145,12 +164,6 @@ class MainPage extends Component {
           ▲
         </button>
         <div className="header">
-          <img
-            className="btn-nav"
-            src={require("../../images/burger.png")}
-            alt="navImage"
-          />
-
           <form action="" id="search" style={{ width: 400 }}>
             <input
               className="inp"
@@ -158,9 +171,12 @@ class MainPage extends Component {
               size="50"
               name="search"
               placeholder="Search"
+              onChange={e => this.search(e.target.value)}
             />
           </form>
         </div>
+
+        {this.state.text !== "" && <div id="searchContainer" />}
 
         {this.renderBannerMovie()}
 

@@ -95,6 +95,7 @@ body {
 .inp {
   height: 40px;
   background-color: rgba(0, 0, 0, 0.04);
+  align-self: center;
 }
 
 ::placeholder {
@@ -250,4 +251,13 @@ footer a img {
   height: 850px;
   position: absolute;
   z-index: -1;
+}
+#search {
+  align-self: center;
+}
+#searchContainer {
+  background-color: red;
+  height: 300px;
+  width: 100%;
+  position: absolute;
 }

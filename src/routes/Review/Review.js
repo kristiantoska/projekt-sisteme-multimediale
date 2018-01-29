@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./index.css";
 
 import navBttn from "../../images/burger.png";
@@ -9,28 +10,16 @@ class Review extends Component {
   }
 
   render() {
+    const item = this.props.selectedMovie;
+
     return (
       <div>
-        <div class="header">
-          <img
-            class="btn-nav"
-            src={require("../../images/burger.png")}
-            alt="navImage"
-          />
-          <form action="" id="search" style={{ width: 400 }}>
-            <input
-              class="inp"
-              type="text"
-              size="50"
-              name="search"
-              placeholder="Search"
-            />
-          </form>
-        </div>
-
-        <h1 class="text"> MOONLIGHT </h1>
+        <h1 class="text">{item.title}</h1>
         <div class="card">
-          <img class="poster" src={require("../../images/list/film7.png")} />
+          <img
+            class="poster"
+            src={`http://image.tmdb.org/t/p/w342${item.poster_path}`}
+          />
           <div class="cardContent">
             <h3> Rate</h3>
             <form>
@@ -170,4 +159,8 @@ class Review extends Component {
   }
 }
 
-export default Review;
+const mapStateToProps = state => ({
+  selectedMovie: state.selectedMovie
+});
+
+export default connect(mapStateToProps)(Review);
