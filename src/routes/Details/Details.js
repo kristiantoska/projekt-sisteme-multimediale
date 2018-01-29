@@ -183,11 +183,7 @@ class MainPage extends Component {
         <div className="thor">
           <img
             id="backgroundimage"
-<<<<<<< HEAD
             src={`http://image.tmdb.org/t/p/w780${item.backdrop_path}`}
-=======
-            src={`http://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
->>>>>>> 36c46a625ae03ffd11c8f52e5f6eb6abb4b3e156
             border="0"
             alt=""
           />
