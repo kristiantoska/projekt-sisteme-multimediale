@@ -4,12 +4,13 @@ import "./index.css";
 import navBttn from "../../images/burger.png";
 
 class Review extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>
-        <button id="topBtn" title="Go to top" class="arrow">
-          ▲
-        </button>
         <div class="header">
           <img
             class="btn-nav"

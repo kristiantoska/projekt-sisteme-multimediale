@@ -88,7 +88,7 @@ class MainPage extends Component {
       <div className="martian">
         <img
           id="backgroundimage"
-          src={`http://image.tmdb.org/t/p/w185${bannerMovie.poster_path}`}
+          src={`http://image.tmdb.org/t/p/w780${bannerMovie.poster_path}`}
           border="0"
           alt=""
         />

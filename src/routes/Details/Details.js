@@ -2,32 +2,137 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+import * as actions from "../../actions";
 
 import "./index.css";
 
 const API_KEY = "5b2f814559ec90adfd0e8c740aa0c2b8";
+const GENRE_LIST = [
+  {
+    id: 28,
+    name: "Action"
+  },
+  {
+    id: 12,
+    name: "Adventure"
+  },
+  {
+    id: 16,
+    name: "Animation"
+  },
+  {
+    id: 35,
+    name: "Comedy"
+  },
+  {
+    id: 80,
+    name: "Crime"
+  },
+  {
+    id: 99,
+    name: "Documentary"
+  },
+  {
+    id: 18,
+    name: "Drama"
+  },
+  {
+    id: 10751,
+    name: "Family"
+  },
+  {
+    id: 14,
+    name: "Fantasy"
+  },
+  {
+    id: 36,
+    name: "History"
+  },
+  {
+    id: 27,
+    name: "Horror"
+  },
+  {
+    id: 10402,
+    name: "Music"
+  },
+  {
+    id: 9648,
+    name: "Mystery"
+  },
+  {
+    id: 10749,
+    name: "Romance"
+  },
+  {
+    id: 878,
+    name: "Science Fiction"
+  },
+  {
+    id: 10770,
+    name: "TV Movie"
+  },
+  {
+    id: 53,
+    name: "Thriller"
+  },
+  {
+    id: 10752,
+    name: "War"
+  },
+  {
+    id: 37,
+    name: "Western"
+  }
+];
 
 class MainPage extends Component {
   constructor() {
     super();
 
     this.state = {
-      similar: []
+      similar: [],
+      genres: [],
+      trailerKey: ""
     };
   }
+
   componentDidMount() {
     window.scrollTo(0, 0);
+    console.log(this.props);
 
-    // axios({
-    //   method: "get",
-    //   url: `https://api.themoviedb.org/3/movie/${
-    //     this.props.selectedMovie.id
-    //   }/reviews?api_key=${API_KEY}`
-    // }).then(result => this.setState({ similar: result.data.results }));
+    axios({
+      method: "get",
+      url: `https://api.themoviedb.org/3/movie/${
+        this.props.selectedMovie.id
+      }/videos?api_key=${API_KEY}`
+    }).then(result =>
+      this.setState({ trailerKey: result.data.results[0].key })
+    );
+
+    axios({
+      method: "get",
+      url: `https://api.themoviedb.org/3/movie/${
+        this.props.selectedMovie.id
+      }/similar?api_key=${API_KEY}`
+    }).then(result =>
+      this.setState({ similar: result.data.results.slice(0, 3) })
+    );
+
+    const genres = [];
+
+    this.props.selectedMovie.genre_ids.map(id => {
+      const index = GENRE_LIST.findIndex(item => item.id === id);
+
+      genres.push(GENRE_LIST[index].name);
+    });
+
+    this.setState({ genres });
   }
 
   renderSimilarMovies() {
-    console.log(this.state.similar);
     return this.state.similar.map(item => (
       <img
         key={item.id}
@@ -36,18 +141,27 @@ class MainPage extends Component {
     ));
   }
 
+  renderGenres() {
+    return this.state.genres.map(genre => (
+      <div>
+        <div className="circle" style={{ backgroundColor: "#00CC66" }}>
+          <p className="text_shape">{genre}</p>
+        </div>
+        <br />
+      </div>
+    ));
+  }
+
   render() {
     const item = this.props.selectedMovie;
     return (
       <div>
-        <button
-          id="topBtn"
-          title="Go to top"
-          className="arrow"
-          onClick={() => window.scrollTo(0, 0)}
-        >
-          ▲
-        </button>
+        <Link to="/review">
+          <button id="topBtn" title="Go to top" className="arrow">
+            ✎
+          </button>
+        </Link>
+
         <div className="header">
           <img
             className="btn-nav"
@@ -69,7 +183,7 @@ class MainPage extends Component {
         <div className="thor">
           <img
             id="backgroundimage"
-            src={`http://image.tmdb.org/t/p/w185${item.backdrop_path}`}
+            src={`http://image.tmdb.org/t/p/w780${item.backdrop_path}`}
             border="0"
             alt=""
           />
@@ -101,43 +215,19 @@ class MainPage extends Component {
               </div>
               <br />
               <h2 className="tag" style={{ paddingTop: 50 }}>
-                {" "}
-                Tags{" "}
+                Tags
               </h2>
-              <div className="tagBlock">
-                <div className="circle" style={{ backgroundColor: "#00CC66" }}>
-                  <p className="text_shape">Action </p>{" "}
-                </div>{" "}
-                <br />
-                <div
-                  className="circle"
-                  style={{ backgroundColor: "#00CC99", marginLeft: 40 }}
-                >
-                  <p className="text_shape"> Comics </p>{" "}
-                </div>{" "}
-                <br />
-                <div className="circle" style={{ backgroundColor: "#00CCCC" }}>
-                  <p className="text_shape">Fantasy </p>{" "}
-                </div>{" "}
-                <br />
-                <div
-                  className="circle"
-                  style={{ backgroundColor: "#00CCFF", marginLeft: 40 }}
-                >
-                  <p className="text_shape"> Adventure </p>{" "}
-                </div>
-              </div>
+              <div className="tagBlock">{this.renderGenres()}</div>
               <br />
 
               <h2 className="tag" style={{ paddingTop: 50 }}>
-                {" "}
-                Trailer{" "}
+                Trailer
               </h2>
               <iframe
                 className="video"
                 width="1024"
                 height="640"
-                src="https://www.youtube.com/embed/ue80QwXMRHg"
+                src={`https://www.youtube.com/embed/${this.state.trailerKey}`}
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
@@ -170,7 +260,7 @@ class MainPage extends Component {
             </p>
           </div>
           <a title="Go top" href="#search">
-            <img src="../../images/download.png" id="btn-top" alt="" />
+            <img src="../../images/review.png" id="btn-top" alt="" />
           </a>
           <div id="bookmark2" className="logos">
             <h2>Lorem ipsum dolor sit </h2>
@@ -178,7 +268,6 @@ class MainPage extends Component {
               <img src={require("../../images/fb.png")} alt="" />
             </a>
             <a href="#">
-              {" "}
               <img src={require("../../images/twiter.jpg")} alt="" />
             </a>
             <a href="#">
@@ -188,7 +277,6 @@ class MainPage extends Component {
               <img src={require("../../images/pintrest.jpg")} alt="" />
             </a>
             <a href="#">
-              {" "}
               <img src={require("../../images/youtube.png")} alt="" />
             </a>
             <a href="#">
@@ -205,4 +293,4 @@ const mapStateToProps = state => ({
   selectedMovie: state.selectedMovie
 });
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps, actions)(MainPage);

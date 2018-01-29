@@ -156,7 +156,7 @@ footer a img {
 }
 
 .info {
-  margin-top: 450px;
+  margin-top: 25%;
 }
 .button1 {
   background-color: rgba(226, 155, 21, 0.7);
@@ -227,11 +227,11 @@ footer a img {
 }
 .video {
   margin-top: 70px;
-  margin-left: 140px;
+  margin-left: 3%;
 }
 .movies {
   margin-top: 70px;
-  margin-left: 160px;
+  margin-left: 10%;
   width: 100%;
 }
 .arrow {
@@ -259,12 +259,11 @@ footer a img {
 
 .list {
   float: left;
-  margin-left: 5%;
+  margin-left: 0;
   width: 90%;
   position: relative;
-  bottom: 100px;
   background-color: white;
-  height: 150%;
+  height: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #all-categories {
