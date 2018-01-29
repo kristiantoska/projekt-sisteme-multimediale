@@ -144,7 +144,7 @@ class MainPage extends Component {
   renderGenres() {
     return this.state.genres.map(genre => (
       <div>
-        <div className="circle" style={{ backgroundColor: "#00CC66" }}>
+        <div className="circle" style={{ backgroundColor: "#00E5FF" }}>
           <p className="text_shape">{genre}</p>
         </div>
         <br />
@@ -164,14 +164,14 @@ class MainPage extends Component {
       <div>
         <Link to="/review">
           <button id="topBtn" title="Go to top" className="arrow">
-            ✎
+            🌟
           </button>
         </Link>
 
         <div className="thor">
           <img
             id="backgroundimage"
-            src={`http://image.tmdb.org/t/p/w780${item.backdrop_path}`}
+            src={`http://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
             border="0"
             alt=""
           />
@@ -179,12 +179,6 @@ class MainPage extends Component {
             <button className="button buttonTitle">
               {item.original_title}
             </button>
-            <div style={{ display: "block", marginLeft: 120 }}>
-              {this.renderTags(this.state.genres.slice(0, 2))}
-            </div>
-            <div style={{ display: "block", marginLeft: 70 }}>
-              {this.renderTags(this.state.genres.slice(2, 4))}
-            </div>
           </div>
         </div>
 

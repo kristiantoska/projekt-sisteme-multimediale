@@ -101,7 +101,7 @@ footer a img {
 }
 
 .info {
-  margin-top: 25%;
+  margin-top: 30%;
 }
 .button1 {
   background-color: rgba(226, 155, 21, 0.7);
@@ -115,11 +115,11 @@ footer a img {
 .buttonTitle {
   background-color: rgba(0, 0, 0, 0.7);
   width: 450px !important;
-  margin-left: 50px !important;
+  margin-left: 0 !important;
   display: grid !important;
   font-size: 42px !important;
   font-weight: bold !important;
-  border-radius: 50px !important;
+  border-radius: 0 !important;
 
 }
 .button {
@@ -186,7 +186,6 @@ footer a img {
 .arrow {
   height: 60px;
   width: 60px;
-  opacity: 0.7;
   /*display: none; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
   bottom: 20px; /* Place the button at the bottom of the page */

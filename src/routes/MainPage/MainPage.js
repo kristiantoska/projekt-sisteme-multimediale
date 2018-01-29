@@ -118,21 +118,6 @@ class MainPage extends Component {
         <div className="textBlock">
           <h1 className="title">
             {bannerMovie.original_title}
-            <span className="rt-imdb">
-              <img
-                src={require("../../images/imdb.jpg")}
-                width="60px"
-                height="60px"
-                alt=""
-              />
-              <img
-                src={require("../../images/rt.jpg")}
-                id="rt"
-                width="70px"
-                height="60px"
-                alt=""
-              />
-            </span>
           </h1>
           <p className="description">{bannerMovie.overview}</p>
           <div className="ratings">

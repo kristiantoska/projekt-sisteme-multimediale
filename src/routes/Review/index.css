@@ -15,8 +15,8 @@ body {
   font-weight: bold;
   /* position: relative; */
   /* top: 200px;  */
-  margin-left: 150px;
-  margin-top: 75px;
+  margin-left: 8%;
+  margin-top: 4%;
 }
 .cardContainer {
   margin-left: 100px;
@@ -37,7 +37,7 @@ body {
   position: relative;
   white-space: nowrap;
   display: inline-flex;
-  margin-top: -31.5%;
+  margin-top: -43.5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .poster {
@@ -127,8 +127,8 @@ textarea {
   height: 50px;
   border-radius: 100%;
   position: relative;
-  left: 340px;
-  top: -30px;
+  left: 300px;
+  top: -60px;
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
   font-size-adjust: auto;
@@ -150,13 +150,14 @@ textarea {
   margin-left: 10px;
 }
 .inp {
-  width: 160%;
-  padding: 5px 25px;
-  margin: 8px 8px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.04);
+  padding-left: 5%;
+}
+::placeholder {
+  color: #bdbdbd;
+  font-weight: 300;
+  font-size: 16px;
 }
 header {
   width: 100%;
