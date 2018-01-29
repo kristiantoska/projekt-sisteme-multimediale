@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div style={{ margin: -20 }}>
             <Route exact path="/" component={MainPage} />
             <Route path="/about" component={Details} />
             <Route path="/review" component={Review} />

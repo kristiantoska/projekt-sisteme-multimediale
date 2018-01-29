@@ -71,7 +71,7 @@ class MainPage extends Component {
         to="/about"
         onClick={() => this.props.selectMovie(item)}
       >
-        <img src={`http://image.tmdb.org/t/p/w185${item.poster_path}`} alt="" />
+        <img src={`http://image.tmdb.org/t/p/w780${item.poster_path}`} alt="" />
       </Link>
     ));
   }
@@ -87,7 +87,7 @@ class MainPage extends Component {
       <div className="martian">
         <img
           id="backgroundimage"
-          src={`http://image.tmdb.org/t/p/w185${bannerMovie.poster_path}`}
+          src={`http://image.tmdb.org/t/p/w1280${bannerMovie.backdrop_path}`}
           border="0"
           alt=""
         />

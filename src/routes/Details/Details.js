@@ -43,7 +43,7 @@ class MainPage extends Component {
         <div className="thor">
           <img
             id="backgroundimage"
-            src={`http://image.tmdb.org/t/p/w185${item.backdrop_path}`}
+            src={`http://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
             border="0"
             alt=""
           />
@@ -111,7 +111,7 @@ class MainPage extends Component {
                 className="video"
                 width="1024"
                 height="640"
-                src="https://www.youtube.com/embed/ue80QwXMRHg"
+                src="https://www.youtube.com/embed/xU47nhruN-Q"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
