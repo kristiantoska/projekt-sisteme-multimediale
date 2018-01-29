@@ -1,17 +1,43 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import "./index.css";
 
+const API_KEY = "5b2f814559ec90adfd0e8c740aa0c2b8";
+
 class MainPage extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      similar: []
+    };
+  }
   componentDidMount() {
     window.scrollTo(0, 0);
+
+    // axios({
+    //   method: "get",
+    //   url: `https://api.themoviedb.org/3/movie/${
+    //     this.props.selectedMovie.id
+    //   }/reviews?api_key=${API_KEY}`
+    // }).then(result => this.setState({ similar: result.data.results }));
+  }
+
+  renderSimilarMovies() {
+    console.log(this.state.similar);
+    return this.state.similar.map(item => (
+      <img
+        key={item.id}
+        src={`http://image.tmdb.org/t/p/w342${item.poster_path}`}
+      />
+    ));
   }
 
   render() {
     const item = this.props.selectedMovie;
-    console.log(item);
     return (
       <div>
         <button
@@ -118,16 +144,12 @@ class MainPage extends Component {
               />
 
               <br />
+
               <h2 className="tag" style={{ paddingTop: 50 }}>
-                {" "}
-                Similar{" "}
+                Similar
               </h2>
 
-              <div className="movies">
-                <img src={require("../../images/list/film12.png")} />
-                <img src={require("../../images/list/film13.png")} />
-                <img src={require("../../images/list/film14.png")} />
-              </div>
+              <div className="movies">{this.renderSimilarMovies()}</div>
             </div>
           </div>
         </div>

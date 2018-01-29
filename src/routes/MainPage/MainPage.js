@@ -20,6 +20,7 @@ class MainPage extends Component {
       loading: true
     };
   }
+
   componentDidMount() {
     axios
       .all([
@@ -71,7 +72,7 @@ class MainPage extends Component {
         to="/about"
         onClick={() => this.props.selectMovie(item)}
       >
-        <img src={`http://image.tmdb.org/t/p/w185${item.poster_path}`} alt="" />
+        <img src={`http://image.tmdb.org/t/p/w342${item.poster_path}`} alt="" />
       </Link>
     ));
   }
