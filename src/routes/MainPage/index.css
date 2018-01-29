@@ -31,7 +31,6 @@ a:hover {
 }
 
 .martian {
-  background-image: url("../../images/martian.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -96,7 +95,7 @@ body {
 }
 
 ::placeholder {
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-weight: 300;
 }
 
@@ -215,10 +214,10 @@ footer a img {
   outline: none; /* Remove outline */
   font-size: 20px;
   font-size-adjust: auto;
-  background-color: #08AEEA;
-  background-image: linear-gradient(0deg, #08AEEA 0%, #2af5d9 100%);
+  background-color: #08aeea;
+  background-image: linear-gradient(0deg, #08aeea 0%, #2af5d9 100%);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- /* Set a background color */
+  /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding: 15px; /* Some padding */
@@ -238,4 +237,14 @@ footer a img {
 #all-categories {
   float: right;
   padding: 10px 30px;
+}
+#backgroundimage {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  width: 100%;
+  height: 850px;
+  position: absolute;
+  z-index: -1;
 }

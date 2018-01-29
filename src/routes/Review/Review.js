@@ -7,16 +7,18 @@ class Review extends Component {
   render() {
     return (
       <div>
-        <button id="topBtn" title="Go to top" className="arrow">▲</button>
-        <div className="header">
+        <button id="topBtn" title="Go to top" class="arrow">
+          ▲
+        </button>
+        <div class="header">
           <img
-            className="btn-nav"
-            src={require('../../images/burger.png')}
+            class="btn-nav"
+            src={require("../../images/burger.png")}
             alt="navImage"
           />
           <form action="" id="search" style={{ width: 400 }}>
             <input
-              className="inp"
+              class="inp"
               type="text"
               size="50"
               name="search"
@@ -25,77 +27,111 @@ class Review extends Component {
           </form>
         </div>
 
-        <h1 className="text"> MOONLIGHT </h1>
-        <div className="card">
-          <img className="poster" src={require("../../images/list/film7.png")} />
-          <div className="cardContent">
+        <h1 class="text"> MOONLIGHT </h1>
+        <div class="card">
+          <img class="poster" src={require("../../images/list/film7.png")} />
+          <div class="cardContent">
             <h3> Rate</h3>
             <form>
               <fieldset class="rating">
                 <input type="radio" id="star5" name="rating" value="5" />
-                  <label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4half" name="rating" value="4and a half" />
-                  <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                <label class="full" for="star5" title="Awesome - 5 stars" />
+                <input
+                  type="radio"
+                  id="star4half"
+                  name="rating"
+                  value="4and a half"
+                />
+                <label
+                  class="half"
+                  for="star4half"
+                  title="Pretty good - 4.5 stars"
+                />
                 <input type="radio" id="star4" name="rating" value="4" />
-                  <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3half" name="rating" value="3and a half" />
-                  <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                <label class="full" for="star4" title="Pretty good - 4 stars" />
+                <input
+                  type="radio"
+                  id="star3half"
+                  name="rating"
+                  value="3and a half"
+                />
+                <label class="half" for="star3half" title="Meh - 3.5 stars" />
                 <input type="radio" id="star3" name="rating" value="3" />
-                  <label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2half" name="rating" value="2and a half" />
-                  <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                <label class="full" for="star3" title="Meh - 3 stars" />
+                <input
+                  type="radio"
+                  id="star2half"
+                  name="rating"
+                  value="2and a half"
+                />
+                <label
+                  class="half"
+                  for="star2half"
+                  title="Kinda bad - 2.5 stars"
+                />
                 <input type="radio" id="star2" name="rating" value="2" />
-                  <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1half" name="rating" value="1and a half" />
-                  <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                <label class="full" for="star2" title="Kinda bad - 2 stars" />
+                <input
+                  type="radio"
+                  id="star1half"
+                  name="rating"
+                  value="1and a half"
+                />
+                <label class="half" for="star1half" title="Meh - 1.5 stars" />
                 <input type="radio" id="star1" name="rating" value="1" />
-                  <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                <label
+                  class="full"
+                  for="star1"
+                  title="Sucks big time - 1 star"
+                />
                 <input type="radio" id="starhalf" name="rating" value="half" />
-                  <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                <label
+                  class="half"
+                  for="starhalf"
+                  title="Sucks big time - 0.5 stars"
+                />
               </fieldset>
               <br />
               <br />
               <br />
               <h3> Review </h3>
-              <textarea className="reviewBox" />
+              <textarea class="reviewBox" />
             </form>
-            <button className="submitContainer">
-              ➤
-            </button>
+            <button class="submitContainer">➤</button>
           </div>
         </div>
-        <div className="card1">
-          <div className="bord1">
+        <div class="card1">
+          <div class="bord1">
             <form action="">
-              <h3 className="labels first">Name</h3>
+              <h3 class="labels first">Name</h3>
               <input
-                className="inp"
+                class="inp"
                 type="text"
                 id="fname"
                 name="firstname"
                 placeholder="Your name.."
               />
-              <h3 className="labels">Email</h3>
+              <h3 class="labels">Email</h3>
               <input
-                className="inp"
+                class="inp"
                 type="email"
                 id="fname"
                 name="firstname"
                 placeholder="Your email.."
               />
-              <h3 className="labels">Date of birth</h3>
-              <input className="inp" type="date" name="bday" min="2000-01-17" />
+              <h3 class="labels">Date of birth</h3>
+              <input class="inp" type="date" name="bday" min="2000-01-17" />
             </form>
           </div>
         </div>
 
         <footer>
-          <div className="info1">
+          <div class="info1">
             <p>
               Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit
             </p>
           </div>
-          <div className="info2">
+          <div class="info2">
             <p>
               Nam facilisis cursus placerat. Nullam augue ex, sollicitudin ut
               quam sit amet, sodales hendrerit justo. Maecenas non efficitur
@@ -104,7 +140,7 @@ class Review extends Component {
               fermentum semper. Sed pulvinar maximus felis non porttito
             </p>
           </div>
-          <div id="bookmark2" className="logos">
+          <div id="bookmark2" class="logos">
             <h2>Lorem ipsum dolor sit </h2>
             <a href="#">
               <img src={require("../../images/fb.png")} alt="" />

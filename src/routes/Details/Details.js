@@ -1,16 +1,31 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { connect } from "react-redux";
+
 import "./index.css";
 
 class MainPage extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
+    const item = this.props.selectedMovie;
+    console.log(item);
     return (
       <div>
-        <button id="topBtn" title="Go to top" className="arrow">▲</button>
+        <button
+          id="topBtn"
+          title="Go to top"
+          className="arrow"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          ▲
+        </button>
         <div className="header">
           <img
             className="btn-nav"
-            src={require('../../images/burger.png')}
+            src={require("../../images/burger.png")}
             alt="navImage"
           />
 
@@ -23,12 +38,19 @@ class MainPage extends Component {
               placeholder="Search"
             />
           </form>
-
         </div>
 
         <div className="thor">
+          <img
+            id="backgroundimage"
+            src={`http://image.tmdb.org/t/p/w185${item.backdrop_path}`}
+            border="0"
+            alt=""
+          />
           <div className="info">
-            <button className="button buttonTitle">Thor Raganarok</button>
+            <button className="button buttonTitle">
+              {item.original_title}
+            </button>
             <div style={{ display: "block", marginLeft: 120 }}>
               <button className="button buttonDefault">Comic</button>
               <button className="button buttonDefault">Action</button>
@@ -49,25 +71,22 @@ class MainPage extends Component {
             <div className="films">
               <h2 className="tag"> Sumary </h2>
               <div className="summary">
-                <p>
-                  Filmi flet per kohen kur Thor perndia e vetetimes kishte shkuar ne
-                  Asgard(Pantheoni i perendive Nordike) ketu ai gjent <br /> dhe
-                  ketu ai fillon mision e tije per te gjetur infini stones. Por ai e
-                  gjen veten te burgosur te demonit Skovia ku ai i thote te vertete
-                  per <br /> Odini dhe Ragnarokun pas kesaj Thor fillon mision e tij
-                  te ndaloj Ragnarokun. Ne mission e tij per te shpetuar Asgardin
-                  nga <br /> Raganark bashkohen dhe si disa miqe te vjeter te tij po
-                  ashtu dhe vellai i tij Loki.
-                </p>
+                <p>{item.overview}</p>
               </div>
               <br />
-              <h2 className="tag" style={{ paddingTop: 50 }}> Tags </h2>
+              <h2 className="tag" style={{ paddingTop: 50 }}>
+                {" "}
+                Tags{" "}
+              </h2>
               <div className="tagBlock">
                 <div className="circle" style={{ backgroundColor: "#00CC66" }}>
                   <p className="text_shape">Action </p>{" "}
                 </div>{" "}
                 <br />
-                <div className="circle" style={{ backgroundColor: "#00CC99", marginLeft: 40 }}>
+                <div
+                  className="circle"
+                  style={{ backgroundColor: "#00CC99", marginLeft: 40 }}
+                >
                   <p className="text_shape"> Comics </p>{" "}
                 </div>{" "}
                 <br />
@@ -75,30 +94,39 @@ class MainPage extends Component {
                   <p className="text_shape">Fantasy </p>{" "}
                 </div>{" "}
                 <br />
-                <div className="circle" style={{ backgroundColor: "#00CCFF", marginLeft: 40 }}>
+                <div
+                  className="circle"
+                  style={{ backgroundColor: "#00CCFF", marginLeft: 40 }}
+                >
                   <p className="text_shape"> Adventure </p>{" "}
                 </div>
               </div>
               <br />
 
-              <h2 className="tag" style={{ paddingTop: 50 }}> Trailer </h2>
+              <h2 className="tag" style={{ paddingTop: 50 }}>
+                {" "}
+                Trailer{" "}
+              </h2>
               <iframe
                 className="video"
                 width="1024"
                 height="640"
                 src="https://www.youtube.com/embed/ue80QwXMRHg"
-                frameborder="0"
+                frameBorder="0"
                 allow="autoplay; encrypted-media"
-                allowfullscreen>
-              </iframe>
+                allowFullScreen
+              />
 
               <br />
-              <h2 className="tag" style={{ paddingTop: 50 }}> Similar </h2>
+              <h2 className="tag" style={{ paddingTop: 50 }}>
+                {" "}
+                Similar{" "}
+              </h2>
 
               <div className="movies">
                 <img src={require("../../images/list/film12.png")} />
-                <img src={require("../../images/list/film13.png")}  />
-                <img src={require("../../images/list/film14.png")}  />
+                <img src={require("../../images/list/film13.png")} />
+                <img src={require("../../images/list/film14.png")} />
               </div>
             </div>
           </div>
@@ -151,4 +179,8 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage;
+const mapStateToProps = state => ({
+  selectedMovie: state.selectedMovie
+});
+
+export default connect(mapStateToProps)(MainPage);

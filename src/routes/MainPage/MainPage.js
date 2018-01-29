@@ -1,16 +1,148 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import * as actions from "../../actions";
 import "./index.css";
 
+const API_KEY = "5b2f814559ec90adfd0e8c740aa0c2b8";
+
 class MainPage extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      top: [],
+      popular: [],
+      latest: [],
+      selected: 2,
+      loading: true
+    };
+  }
+  componentDidMount() {
+    axios
+      .all([
+        axios.get(
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
+        ),
+        axios.get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+        ),
+        axios.get(
+          `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`
+        )
+      ])
+      .then(
+        axios.spread((top, popular, latest) => {
+          this.setState({
+            top: top.data.results,
+            popular: popular.data.results,
+            latest: latest.data.results,
+            loading: false
+          });
+        })
+      );
+  }
+
+  selectCategory(type) {
+    this.setState({ selected: type });
+  }
+
+  renderMovies() {
+    let data = [];
+
+    switch (this.state.selected) {
+      case 0:
+        data = this.state.top;
+        break;
+      case 1:
+        data = this.state.popular;
+        break;
+      case 2:
+        data = this.state.latest;
+        break;
+      default:
+    }
+
+    return data.map(item => (
+      <Link
+        key={item.id}
+        to="/about"
+        onClick={() => this.props.selectMovie(item)}
+      >
+        <img src={`http://image.tmdb.org/t/p/w185${item.poster_path}`} alt="" />
+      </Link>
+    ));
+  }
+
+  renderBannerMovie() {
+    const selected = this.state.selected;
+    const bannerMovie =
+      selected === 0
+        ? this.state.top[0]
+        : selected === 1 ? this.state.popular[0] : this.state.latest[0];
+
+    return (
+      <div className="martian">
+        <img
+          id="backgroundimage"
+          src={`http://image.tmdb.org/t/p/w185${bannerMovie.poster_path}`}
+          border="0"
+          alt=""
+        />
+        <div className="textBlock">
+          <h1 className="title">
+            {bannerMovie.original_title}
+            <span className="rt-imdb">
+              <img
+                src={require("../../images/imdb.jpg")}
+                width="60px"
+                height="60px"
+                alt=""
+              />
+              <img
+                src={require("../../images/rt.jpg")}
+                id="rt"
+                width="70px"
+                height="60px"
+                alt=""
+              />
+            </span>
+          </h1>
+          <p className="description">{bannerMovie.overview}</p>
+          <div className="ratings">
+            <button className="button button1">7.5 Imdb</button>
+            <button className="button button2">65% RT</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    const selected = this.state.selected;
+    const currentCategory =
+      selected === 0 ? "Top" : selected === 1 ? "Popular" : "Latest";
+
+    if (this.state.loading) {
+      return <div />;
+    }
+
     return (
       <div>
-        <button id="topBtn" title="Go to top" className="arrow">▲</button>
+        <button
+          id="topBtn"
+          title="Go to top"
+          className="arrow"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          ▲
+        </button>
         <div className="header">
           <img
             className="btn-nav"
-            src={require('../../images/burger.png')}
+            src={require("../../images/burger.png")}
             alt="navImage"
           />
 
@@ -23,100 +155,50 @@ class MainPage extends Component {
               placeholder="Search"
             />
           </form>
-
         </div>
 
-        <div className="martian">
+        {this.renderBannerMovie()}
 
-          <div className="textBlock">
-            <h1 className="title">
-              The Martian
-              <span className="rt-imdb">
-                <img
-                  src={require("../../images/imdb.jpg")}
-                  width="60px"
-                  height="60px"
-                  alt=""
-                />
-                <img
-                  src={require("../../images/rt.jpg")}
-                  id="rt"
-                  width="70px"
-                  height="60px"
-                  alt=""
-                />
-              </span>
-            </h1>
-            <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              in mollis lacus. Pellentesque consequat eros dapibus eros pulvinar
-              pharetra. Praesent tristique a quam eu posuere. Nam facilisis
-              cursus placerat. Nullam augue ex, sollicitudin ut quam sit amet,
-              sodales hendrerit justo. Maecenas non efficitur
-            </p>
-            <div className="ratings">
-              <button className="button button1">7.5 Imdb</button>
-              <button className="button button2">65% RT</button>
-            </div>
-          </div>
-        </div>
         <div>
           <div className="list">
             <div className="top-list">
-              <b id="all-categories">Category: All</b>
+              <b id="all-categories">{`Category: ${currentCategory}`}</b>
               <ul className="menus">
-                <li className="list-items active">
-                  <a href="" className="menuItem">Latest</a>
+                <li className={`list-items${selected === 2 ? " active" : ""}`}>
+                  <span
+                    onClick={() => this.selectCategory(2)}
+                    className="menuItem"
+                  >
+                    Latest
+                  </span>
                 </li>
-                <li className="list-items">
-                  <a href="" className="menuItem">Popular</a>
+                <li className={`list-items${selected === 1 ? " active" : ""}`}>
+                  <span
+                    onClick={() => this.selectCategory(1)}
+                    className="menuItem"
+                  >
+                    Popular
+                  </span>
                 </li>
-                <li className="list-items">
-                  <a href="" className="menuItem">Top</a>
+                <li className={`list-items${selected === 0 ? " active" : ""}`}>
+                  <span
+                    onClick={() => this.selectCategory(0)}
+                    className="menuItem"
+                  >
+                    Top
+                  </span>
                 </li>
 
-                <li>
-                  <img id="arrbot" src={require("../../images/arr-down.png" )}alt="" />
-                </li>
+                {/* <li>
+                  <img
+                    id="arrbot"
+                    src={require("../../images/arr-down.png")}
+                    alt=""
+                  />
+                </li> */}
               </ul>
             </div>
-            <div className="films">
-              <img src={require("../../images/list/film7.png")} alt="" />
-              <img src={require("../../images/list/film9.png")} alt="" />
-              <img src={require("../../images/list/film1.png")} alt="" />
-              <img src={require("../../images/list/film2.png")} alt="" />
-              <img src={require("../../images/list/film3.png")} alt="" />
-              <img src={require("../../images/list/film4.png")} alt="" />
-              <img src={require("../../images/list/film5.png")} alt="" />
-              <img src={require("../../images/list/film6.png")} alt="" />
-              <img src={require("../../images/list/film10.png")} alt="" />
-              <img src={require("../../images/list/film8.png")} alt="" />
-              <img src={require("../../images/list/film11.png")} alt="" />
-              <img src={require("../../images/list/film12.png")} alt="" />
-              <img src={require("../../images/list/film9.png")} alt="" />
-              <img src={require("../../images/list/film1.png")} alt="" />
-              <img src={require("../../images/list/film2.png")} alt="" />
-              <img src={require("../../images/list/film3.png")} alt="" />
-              <img src={require("../../images/list/film4.png")} alt="" />
-              <img src={require("../../images/list/film13.png")} alt="" />
-              <img src={require("../../images/list/film14.png")} alt="" />
-              <img src={require("../../images/list/film15.png")} alt="" />
-              <img src={require("../../images/list/film16.png")} alt="" />
-              <img src={require("../../images/list/film3.png")} alt="" />
-              <img src={require("../../images/list/film4.png")} alt="" />
-              <img src={require("../../images/list/film5.png")} alt="" />
-              <img src={require("../../images/list/film6.png")} alt="" />
-              <img src={require("../../images/list/film10.png")} alt="" />
-              <img src={require("../../images/list/film8.png")} alt="" />
-              <img src={require("../../images/list/film11.png")} alt="" />
-              <img src={require("../../images/list/film11.png")} alt="" />
-              <img src={require("../../images/list/film1.png")} alt="" />
-              <img src={require("../../images/list/film3.png")} alt="" />
-              <img src={require("../../images/list/film4.png")} alt="" />
-              <img src={require("../../images/list/film5.png")} alt="" />
-              <img src={require("../../images/list/film6.png")} alt="" />
-              <img src={require("../../images/list/film2.png")} alt="" />
-            </div>
+            <div className="films">{this.renderMovies()}</div>
           </div>
         </div>
 
@@ -164,12 +246,10 @@ class MainPage extends Component {
               <img src={require("../../images/linkedin.png")} alt="" />
             </a>
           </div>
-
         </footer>
-
       </div>
     );
   }
 }
 
-export default MainPage;
+export default connect(null, actions)(MainPage);
