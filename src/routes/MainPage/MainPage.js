@@ -95,7 +95,7 @@ class MainPage extends Component {
         to="/about"
         onClick={() => this.props.selectMovie(item)}
       >
-        <img src={`http://image.tmdb.org/t/p/w342${item.poster_path}`} alt="" />
+        <img src={`http://image.tmdb.org/t/p/w780${item.poster_path}`} alt="" />
       </Link>
     ));
   }
@@ -180,7 +180,6 @@ class MainPage extends Component {
         <div className="header">
           <form action="" id="search" style={{ width: 400 }}>
             <input
-              className="inp"
               type="text"
               size="50"
               name="search"
