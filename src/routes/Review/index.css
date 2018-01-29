@@ -1,4 +1,3 @@
-
 html {
   box-sizing: border-box;
 }
@@ -19,12 +18,26 @@ body {
   margin-left: 150px;
   margin-top: 75px;
 }
+.cardContainer {
+  margin-left: 100px;
+  margin-right: 100px;
+}
 
 .card {
-  width: 800px;
+  width: 700px;
   height: 500px;
-  margin-left: 150px;
   margin-top: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card1 {
+  width: 400px;
+  height: 500px;
+  float: right;
+  position: relative;
+  white-space: nowrap;
+  display: inline-flex;
+  margin-top: -31.5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .poster {
@@ -35,7 +48,6 @@ body {
 .cardContent {
   margin-top: -450px;
   margin-left: 45%;
-
 }
 .reviewBox {
   width: 95%;
@@ -46,9 +58,18 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0px 0px 0 rgba(0, 0, 0, 0.09);
 }
 
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
+fieldset,
+label {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 20px;
+}
+h1 {
+  font-size: 1.5em;
+  margin: 10px;
+}
 
 /****** Style Star Rating Widget *****/
 
@@ -57,7 +78,9 @@ h1 { font-size: 1.5em; margin: 10px; }
   float: left;
 }
 
-.rating > input { display: none; }
+.rating > input {
+  display: none;
+}
 .rating > label:before {
   font-size: 2em;
   font-family: FontAwesome;
@@ -72,19 +95,23 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 .rating > label {
   color: #ddd;
- float: right;
+  float: right;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+} /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
 
 textarea {
   width: 280px;
@@ -105,8 +132,8 @@ textarea {
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
   font-size-adjust: auto;
-  background-color: #FFE53B;
-  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 73%);
+  background-color: #ffe53b;
+  background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 73%);
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding-right: 6px; /* Some padding */
@@ -116,17 +143,6 @@ textarea {
   padding-left: 12px;
 }
 
-.card1 {
-  width: 400px;
-  height: 500px;
-  float: right;
-  position: relative;
-  white-space: nowrap;
-  display: inline-flex;
-  margin-right: 100px;
-  margin-top: -31.5%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 .first {
   margin-top: 30px;
 }
@@ -211,10 +227,10 @@ footer img {
   outline: none; /* Remove outline */
   font-size: 20px;
   font-size-adjust: auto;
-  background-color: #08AEEA;
-  background-image: linear-gradient(0deg, #08AEEA 0%, #2af5d9 100%);
+  background-color: #08aeea;
+  background-image: linear-gradient(0deg, #08aeea 0%, #2af5d9 100%);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- /* Set a background color */
+  /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding: 15px; /* Some padding */
